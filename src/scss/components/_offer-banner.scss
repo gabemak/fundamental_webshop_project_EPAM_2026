@@ -1,0 +1,106 @@
+@use "sass:color";
+
+.offer-banner-section {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.offer-banner {
+  width: 1300px;
+  height: 407px;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../../assets/imageBanner/bannerimage.png");
+  background-size: cover;
+  background-position: center;
+
+  padding: 80px 80px;
+
+  @media (max-width: 992px) {
+    padding: 60px 40px;
+  }
+
+  .offer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .offer-left {
+    flex: 0 1 auto;
+
+    .percentage {
+      font-family: "Montserrat", sans-serif;
+      font-size: 223px;
+      font-weight: 900;
+      line-height: 0.9;
+      margin: 0;
+      color: #fff;
+    }
+
+    .left-subtitle {
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 10px;
+      max-width: 466px;
+      line-height: 1.4;
+      color: #fff;
+    }
+  }
+
+  .offer-right {
+    flex: 0 1 450px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+
+    .offer-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    .offer-description {
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+      opacity: 0.9;
+      color: #fff;
+    }
+  }
+}
+
+.btn-offer {
+  background-color: #b92770;
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

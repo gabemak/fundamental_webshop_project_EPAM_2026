@@ -7,8 +7,11 @@
 @use "components/buttons";
 @use "components/forms";
 @use "components/product-card";
+@use "components/offer-banner";
+@use "components/testimonials";
 
 @use "layouts/header";
 @use "layouts/footer";
 
 @use "pages/catalog";
+@use "pages/home";
