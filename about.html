@@ -6,69 +6,156 @@
     <title>Best Shop</title>
     <link rel="stylesheet" href="/src/scss/main.scss" />
   </head>
+
   <body>
-    <header>
-      <div class="top-bar">
-        <div class="socials">
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="src/assets/icons/facebook.svg" alt="Facebook" />
-          </a>
+    <load src="./header.html" />
 
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="src/assets/icons/twitter.svg" alt="Twitter" />
-          </a>
-
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="src/assets/icons/instagram.png" alt="Instagram" />
-          </a>
-        </div>
-        <div class="logo">
-          <a href="index.html">
-            <img
-              src="src/assets/icons/logo-icon.svg"
-              alt="Best Shop Logo"
-              class="logo-img"
-            />
-            <span>BEST SHOP</span>
-          </a>
-        </div>
-        <div class="actions">
-          <a href="#"
-            ><img
-              src="src/assets/icons/profile.jpg"
-              alt="Profile"
-              class="action-icon"
-          /></a>
-          <a href="#"
-            ><img
-              src="src/assets/icons/cart.png"
-              alt="Cart"
-              class="action-icon"
-          /></a>
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <h1>About Us</h1>
+          <p>Duis vestibulum elit vel neque pharetra vulputate.</p>
+          <p>Duis rutrum non risus in imperdiet.</p>
         </div>
       </div>
+    </section>
 
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="catalog.html">Catalog</a></li>
-          <li><a href="about.html" class="active">About us</a></li>
-          <li><a href="contact.html">Contact us</a></li>
-        </ul>
-      </nav>
-    </header>
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <img
+                src="src/assets/aboutPageIcons/target.png"
+                alt="Superior Accuracy"
+              />
+            </div>
+            <h3>Superior Accuracy</h3>
+            <p>Qewist vestibulum elit vel</p>
+            <p>neque pharetra vulputate</p>
+            <p>scelerisque nisi urna.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <img src="src/assets/aboutPageIcons/star.png" alt="Awards" />
+            </div>
+            <h3>Awards</h3>
+            <p>Vestibulum elit vel neque</p>
+            <p>pharetra vulputate. Quisque</p>
+            <p>scelerisque nisi urna.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <img
+                src="src/assets/aboutPageIcons/arrows.png"
+                alt="Ecological"
+              />
+            </div>
+            <h3>Ecological</h3>
+            <p>Elit vel neque duis vestibulum</p>
+            <p>pharetra vulputateuisque</p>
+            <p>scelerisque nisi urna.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <img
+                src="src/assets/aboutPageIcons/planet.png"
+                alt="Shipping Worldwide"
+              />
+            </div>
+            <h3>Shipping Worldwide</h3>
+            <p>Quisque scelerisque nisi urna.</p>
+            <p>Duis vestibulum elit vel neque</p>
+            <p>pharetra vulputate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="new-arrivals-about">
+      <div class="container">
+        <div class="split-wrapper">
+          <div class="text-content">
+            <h2 class="section-title-big">New Arrivals Every Week</h2>
+            <p class="description">
+              Duis vestibulum elit vel neque pharetra vulputate. Quisque
+              scelerisque nisi urna. Duis rutrum non risus in imperdiet. Proin
+              molestie accumsan nulla sit. Quisque scelerisque nisi urnauis
+              rutrum.
+            </p>
+            <p class="description secondary">
+              Vitrumuis vestibulum elit vel neque pharetra vulputate. Quisque
+              scelerisque nisi urna. Duis vestibulum elit vel neque pharetra
+              vulputateuisque scelerisque nisi urna.
+            </p>
+            <a href="catalog.html" class="btn-primary">See All Models</a>
+          </div>
+
+          <div class="image-content">
+            <img
+              src="/src/assets/aboutPageIcons/aboutNewArrivalSuitcase.jpg"
+              alt="Person with vintage suitcase walking on a road"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="our-team">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Incredible Team</h2>
+          <div class="underline"></div>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-member">
+            <div class="member-image">
+              <img
+                src="/src/assets/aboutPageIcons/aboutTeamNataliia.png"
+                alt="Nataliia Foster"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Nataliia Foster</h3>
+              <p>Product Manager</p>
+            </div>
+          </article>
+
+          <article class="team-member">
+            <div class="member-image">
+              <img
+                src="/src/assets/aboutPageIcons/aboutTeamAlexandra.png"
+                alt="Alexandra Thompson"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Alexandra Thompson</h3>
+              <p>Graphic Designer</p>
+            </div>
+          </article>
+
+          <article class="team-member">
+            <div class="member-image">
+              <img
+                src="/src/assets/aboutPageIcons/aboutTeamIryna.png"
+                alt="Iryna Brooks"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Iryna Brooks</h3>
+              <p>Head Of Marketing</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <load src="./discount-banner.html" />
+
     <load src="./footer.html" />
   </body>
 </html>

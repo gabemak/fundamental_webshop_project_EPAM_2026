@@ -1,0 +1,51 @@
+.offer-banner-section {
+  padding: 60px 60px 0px 0px;
+
+  .offer-banner {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("/src/assets/imagesMainDiscountBanner/discount-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    padding: 0px 60px 0px 0px;
+    color: #fff;
+  }
+
+  .offer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .offer-left {
+    .percentage {
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+
+  .offer-right {
+    .btn-offer {
+      background-color: #b92770;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: darken(#b92770, 10%);
+      }
+    }
+  }
+}
