@@ -5,7 +5,7 @@ body {
   width: 100%;
 }
 
-.page-header {
+.about-page-header {
   width: 100%;
   position: relative;
   min-height: 554px;
@@ -17,7 +17,7 @@ body {
 
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/src/assets/sectionBackgroundImages/aboutSectionBackgrImg.jpg");
+    url("/src/assets/aboutPageIcons/aboutBannerImage.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

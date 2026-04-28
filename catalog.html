@@ -3,54 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Best Shop</title>
-    <link rel="stylesheet" href="/src/scss/main.scss" />
+    <title>Best Shop - Catalog</title>
   </head>
-  <header>
-    <load src="./header.html" />
-  </header>
-  <main class="catalog-page">
-    <div class="container">
-      <div class="catalog-toolbar">
-        <p class="results-count">Showing 1–12 of 15 Results</p>
-        <div class="sorting-wrapper">
-          <select class="sort-select">
-            <option>Default Sorting</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-          </select>
+  <body>
+    <header>
+      <load src="./header.html" />
+    </header>
+
+    <main class="catalog-page">
+      <div class="container">
+        <div class="catalog-header">
+          <div class="results-count" id="results-info">
+            Showing 1-12 of 20 Results
+          </div>
+
+          <div class="catalog-actions">
+            <div class="sort-wrapper">
+              <select id="sort-select">
+                <option value="default">Default Sorting</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="popularity">Popularity (Most popular)</option>
+                <option value="rating">Rating (Highest first)</option>
+              </select>
+            </div>
+
+            <div class="search-wrapper">
+              <input
+                type="text"
+                id="catalog-search"
+                placeholder="Search Models"
+              />
+              <button type="button" class="search-btn">
+                <img src="/src/assets/icons/search.svg" alt="Search" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="catalog-main-content">
+          <section class="products-section">
+            <div class="product-grid" id="product-grid"></div>
+            <div class="pagination" id="pagination"></div>
+          </section>
+
+          <aside class="top-sets-sidebar">
+            <h3>Top Best Sets</h3>
+            <div id="top-sets-container"></div>
+          </aside>
         </div>
       </div>
+    </main>
 
-      <div class="catalog-layout">
-        <section class="catalog-grid">
-          <div class="product-card">...</div>
-        </section>
-
-        <aside class="catalog-sidebar">
-          <div class="search-widget">
-            <input type="text" placeholder="Search Models" />
-            <button type="submit"><i class="search-icon"></i></button>
-          </div>
-
-          <div class="sidebar-widget">
-            <h3>Top Best Sets</h3>
-            <ul class="mini-product-list">
-              <li>
-                <img src="..." alt="mini-product" />
-                <div class="mini-info">
-                  <h4>Product Title</h4>
-                  <div class="rating">★★★★★</div>
-                  <span class="price">$1000</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </main>
-  <body>
     <load src="./footer.html" />
+    <script type="module" src="/src/ts/catalog.ts"></script>
   </body>
 </html>

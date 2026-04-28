@@ -8,6 +8,115 @@
   </head>
   <body>
     <load src="./header.html" />
+
+    <section class="contact-page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <h1>Contact Us</h1>
+          <p>Duis vestibulum elit vel neque pharetra vulputate.</p>
+          <p>Duis rutrum non risus in imperdiet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-info-blocks">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">
+              <img
+                src="/src/assets/contactPageIcons/location.png"
+                alt="Our Location"
+              />
+            </div>
+            <h3>Our Location</h3>
+            <p>1234 NW Bobcat Lane, St.<br />Robert, MO 65584-5678</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <img
+                src="/src/assets/contactPageIcons/time.png"
+                alt="Operating Time"
+              />
+            </div>
+            <h3>Operating Time</h3>
+            <p>Monday - Friday: 9am - 6 pm<br />Weekends: 10:30 am - 6pm</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <img
+                src="/src/assets/contactPageIcons/email.png"
+                alt="Our Email"
+              />
+            </div>
+            <h3>Our Email</h3>
+            <p>best@shop.com<br />info@bestshop.com</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <img src="/src/assets/contactPageIcons/call.png" alt="Call Us" />
+            </div>
+            <h3>Call Us</h3>
+            <p>(268)142-8413<br />(760)265-2917</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback-section">
+      <div class="container">
+        <div class="feedback-wrapper">
+          <div class="feedback-image">
+            <img
+              src="/src/assets/contactPageIcons/contactFeedbackImage.jpg"
+              alt="Travel Feedback"
+            />
+          </div>
+
+          <div class="feedback-content">
+            <h2>Your Feedback Is Much Appreciated!</h2>
+            <p class="subtitle">
+              We will contact you when you complete the following form!
+            </p>
+
+            <form class="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name <span>*</span></label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email Address <span>*</span></label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="topic">Topic <span>*</span></label>
+                <input type="text" id="topic" name="topic" required />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Your Message <span>*</span></label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <div id="formResponse" class="form-response"></div>
+              <button type="submit" class="btn-send">SEND</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <load src="./footer.html" />
+
+    <script type="module" src="/src/ts/contact.ts"></script>
   </body>
 </html>
