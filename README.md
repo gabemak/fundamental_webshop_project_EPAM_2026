@@ -1,4 +1,4 @@
-Technologies Used:
+# Technologies Used:
 
 The project is built with a modern web stack to ensure a modular architecture and a fast development experience:
 
@@ -63,6 +63,8 @@ Updated Development Workflow
     Loads pages dynamically without a full browser reload.
     Displays a dynamic status indicator: "Showing X–Y of Z results".
     Top Best Sets Sidebar: A dedicated sidebar that displays a randomized selection of suitcase sets to the visitors.
+    Multi-criteria Filtering: Users can filter suitcases by category, color, and size simultaneously. The results update dynamically without page reloads.
+    Search Validation: An error handling mechanism is implemented for the search bar. If no product matches the query, a feedback message is displayed to the user.
 
 11. Design Implementation
     Figma Fidelity: The development strictly follows the Figma design specs regarding card layouts, typography (Montserrat), and the color palette.

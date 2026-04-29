@@ -10,6 +10,7 @@
 @use "components/offer-banner";
 @use "components/testimonials";
 
+@use "layouts/body";
 @use "layouts/header";
 @use "layouts/footer";
 
@@ -17,3 +18,7 @@
 @use "pages/about";
 @use "pages/contact";
 @use "pages/catalog";
+@use "pages/main-page";
+@use "pages/login";
+@use "pages/toast";
+@use "pages/cart";

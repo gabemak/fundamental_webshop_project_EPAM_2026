@@ -1,0 +1,19 @@
+@import "../components/product-card";
+
+.products-section {
+  padding: 20px 0;
+  text-align: center;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .section-subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+}

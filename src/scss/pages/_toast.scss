@@ -1,0 +1,21 @@
+.cart-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745; // Zöld a sikerhez, vagy #b92770 a márka hűséghez
+  color: white;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+
+  &.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

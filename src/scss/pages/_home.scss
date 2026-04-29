@@ -1,4 +1,15 @@
 @use "sass:color";
+@import "../components/product-card";
+
+.products-section {
+  padding: 60px 0;
+  text-align: center;
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 30px;
+  }
+}
 
 .discount-section {
   padding: 0;
@@ -145,11 +156,11 @@
   width: 100%;
 
   .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 15px;
+    box-sizing: border-box;
   }
 
   .section-header {
