@@ -3,10 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>My Cart - Best Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
     <load src="./header.html" />
+
+    <main class="cart-page">
+      <div class="cart-hero">
+        <h1>My Cart</h1>
+      </div>
+
+      <div class="container">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>IMAGE</th>
+              <th>PRODUCT NAME</th>
+              <th>PRICE</th>
+              <th>QUANTITY</th>
+              <th>TOTAL</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body"></tbody>
+        </table>
+
+        <div class="cart-footer-actions">
+          <div class="footer-buttons">
+            <a href="catalog.html" class="btn-continue">CONTINUE SHOPPING</a>
+            <button id="clear-cart" class="btn-clear">
+              CLEAR SHOPPING CART
+            </button>
+          </div>
+
+          <div class="cart-totals-card">
+            <div class="summary-line">
+              <span>Sub Total</span>
+              <span id="sub-total">$0</span>
+            </div>
+            <div class="summary-line">
+              <span>Shipping</span>
+              <span id="shipping-fee">$30</span>
+            </div>
+            <div class="summary-line grand-total">
+              <span>Total</span>
+              <span id="grand-total">$0</span>
+            </div>
+            <button class="btn-checkout">CHECKOUT</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <load src="./footer.html" />
+
+    <script type="module" src="/src/ts/cart.ts"></script>
   </body>
 </html>

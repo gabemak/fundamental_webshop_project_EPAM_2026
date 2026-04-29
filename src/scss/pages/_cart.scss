@@ -1,0 +1,49 @@
+.cart-hero {
+  background: #333;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/src/assets/images/cart-banner.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 48px;
+    text-transform: capitalize;
+  }
+}
+
+.cart-table {
+  tbody tr {
+    border-bottom: 1px solid #b92770;
+
+    td {
+      padding: 25px 10px;
+      font-family: "Montserrat", sans-serif;
+      color: #333;
+    }
+  }
+}
+
+.cart-totals-card {
+  background-color: #444;
+  color: #fff;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  float: right;
+  margin-bottom: 50px;
+
+  .grand-total {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 20px;
+    border-top: 1px solid #666;
+    padding-top: 20px;
+  }
+}
