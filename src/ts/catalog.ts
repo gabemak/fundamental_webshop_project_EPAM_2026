@@ -1,5 +1,6 @@
 import "../scss/pages/_catalog.scss";
 import "../scss/main.scss";
+import { createProductCardHTML } from "./ui-utils";
 
 interface Product {
   id: string;
@@ -54,7 +55,7 @@ function handleSort() {
       currentDisplayList.sort((a, b) => b.rating - a.rating);
       break;
     default:
-      currentDisplayList.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+      currentDisplayList.sort((a, b) => a.name.localeCompare(b.name));
   }
   renderPage(1);
 }
@@ -62,19 +63,22 @@ function handleSort() {
 function handleSearch() {
   const searchInput = document.getElementById(
     "catalog-search",
-  ) as HTMLInputElement;
+  ) as HTMLInputElement | null;
+  if (!searchInput) return;
+
   const term = searchInput.value.trim().toLowerCase();
 
   if (!term) return;
 
-  const foundProduct =
-    allProducts.find((p) => p.name.toLowerCase() === term) ||
-    allProducts.find((p) => p.name.toLowerCase().includes(term));
+  const foundProduct = allProducts.find((p) =>
+    p.name.toLowerCase().includes(term),
+  );
 
   if (foundProduct) {
     window.location.href = `product-details.html?id=${foundProduct.id}`;
   } else {
-    alert("Product not found");
+    alert(`No products found matching "${term}".`);
+    searchInput.value = "";
   }
 }
 
@@ -103,19 +107,32 @@ function renderProducts(
   if (!grid) return;
 
   grid.innerHTML = products
-    .map(
-      (p) => `
-    <div class="product-card">
-      ${p.salesStatus ? '<span class="sale-badge">SALE</span>' : ""}
-      <div class="image-container">
-        <img src="${p.imageUrl}" alt="${p.name}">
-      </div>
-      <h4>${p.name}</h4>
-      <p class="price">$${p.price}</p>
-      <button class="btn-add-cart">ADD TO CART</button>
-    </div>
-  `,
-    )
+    .map((p) => {
+      let displayName = p.name;
+      const firstSpaceIndex = displayName.indexOf(" ");
+      if (firstSpaceIndex !== -1) {
+        displayName =
+          displayName.substring(0, firstSpaceIndex + 1) +
+          "<br>" +
+          displayName.substring(firstSpaceIndex + 1);
+      }
+
+      return `
+        <div class="product-card">
+          <span class="sale-badge">SALE</span>
+          
+          <div class="image-container">
+            <img src="${p.imageUrl}" alt="${p.name}">
+          </div>
+          
+          <div class="card-content">
+            <h4>${displayName}</h4>
+            <p class="price">$${p.price}</p>
+            <button class="btn-add-cart">ADD TO CART</button>
+          </div>
+        </div>
+      `;
+    })
     .join("");
 
   const info = document.getElementById("results-info");
@@ -167,11 +184,42 @@ function renderRandomTopSets() {
 }
 
 function setupEventListeners() {
-  document
-    .getElementById("sort-select")
-    ?.addEventListener("change", handleSort);
-  const searchBtn = document.querySelector(".search-btn");
-  searchBtn?.addEventListener("click", handleSearch);
+  const searchInput = document.getElementById(
+    "catalog-search",
+  ) as HTMLInputElement | null;
+  const searchBtn = document.querySelector(
+    ".search-btn",
+  ) as HTMLButtonElement | null;
+
+  if (searchBtn) {
+    searchBtn.addEventListener("click", (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleSearch();
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        e.stopPropagation();
+        handleSearch();
+      }
+    });
+  }
+}
+
+function showSearchError(term: string) {
+  alert(
+    `Sorry, we couldn't find any suitcase matching "${term}". Please try another model!`,
+  );
+
+  const searchInput = document.getElementById(
+    "catalog-search",
+  ) as HTMLInputElement;
+  searchInput.value = "";
+  searchInput.focus();
 }
 
 loadProducts();
