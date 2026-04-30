@@ -19,7 +19,13 @@ export function createProductCardHTML(p: any): string {
       <div class="card-content">
         <h4>${p.name}</h4>
         <p class="price">$${p.price}</p>
-        <button class="btn-add-cart">ADD TO CART</button>
+<button class="btn-add-cart" 
+          data-id="${p.id}" 
+          data-name="${p.name}" 
+          data-price="${p.price}" 
+          data-image="${p.imageUrl}">
+    ADD TO CART
+  </button>
       </div>
     </div>
   `;

@@ -100,8 +100,12 @@
   }
 
   .banner-card {
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        // Sötétség mértéke (0.4 = 40%)
+        rgba(0, 0, 0, 0.4)
+      ),
       url("../../assets/imagesMainDiscountBanner/bannerCases.png");
 
     background-size: cover;
@@ -151,35 +155,42 @@
   }
 }
 
-.selected-products {
+.products-section {
   padding: 80px 0;
-  width: 100%;
+  text-align: center;
 
   .container {
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    box-sizing: border-box;
   }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    width: 100%;
+  .section-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #000;
+  }
 
-    h2 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      display: block;
+  .section-subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 50px;
+    display: block;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    p {
-      color: #777;
-      font-size: 14px;
-      display: block;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
     }
   }
 }

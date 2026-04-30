@@ -1,6 +1,6 @@
 import "../scss/pages/_catalog.scss";
 import "../scss/main.scss";
-import { createProductCardHTML } from "./ui-utils";
+import { addToCart } from "./main";
 
 interface Product {
   id: string;
@@ -35,29 +35,6 @@ async function loadProducts() {
   } catch (error) {
     console.error("Hiba az adatok betöltésekor:", error);
   }
-}
-
-function handleSort() {
-  const sortVal = (document.getElementById("sort-select") as HTMLSelectElement)
-    .value;
-
-  switch (sortVal) {
-    case "price-low":
-      currentDisplayList.sort((a, b) => a.price - b.price);
-      break;
-    case "price-high":
-      currentDisplayList.sort((a, b) => b.price - a.price);
-      break;
-    case "popularity":
-      currentDisplayList.sort((a, b) => b.popularity - a.popularity);
-      break;
-    case "rating":
-      currentDisplayList.sort((a, b) => b.rating - a.rating);
-      break;
-    default:
-      currentDisplayList.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  renderPage(1);
 }
 
 function handleSearch() {
@@ -120,20 +97,33 @@ function renderProducts(
       return `
         <div class="product-card">
           <span class="sale-badge">SALE</span>
-          
           <div class="image-container">
             <img src="${p.imageUrl}" alt="${p.name}">
           </div>
-          
           <div class="card-content">
             <h4>${displayName}</h4>
             <p class="price">$${p.price}</p>
-            <button class="btn-add-cart">ADD TO CART</button>
+            <button class="btn-add-cart" data-id="${p.id}">ADD TO CART</button>
           </div>
         </div>
       `;
     })
     .join("");
+
+  grid.querySelectorAll(".btn-add-cart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const id = (e.currentTarget as HTMLElement).dataset.id;
+      const product = products.find((p) => p.id === id);
+      if (product) {
+        addToCart({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        });
+      }
+    });
+  });
 
   const info = document.getElementById("results-info");
   if (info) info.innerText = `Showing ${from}–${to} of ${total} results`;

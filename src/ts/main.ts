@@ -46,81 +46,88 @@ function checkLoginStatus() {
   }
 }
 
-let cart: any[] = JSON.parse(localStorage.getItem("cart") || "[]");
+function showToast(message: string) {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
 
-export function initCartLogic() {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.5s ease";
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
+
+export function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
+  const badge = document.getElementById("cart-count");
+
+  if (badge) {
+    badge.innerText = count.toString();
+    badge.style.display = count > 0 ? "block" : "none";
+  }
+}
+
+export function addToCart(product: {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+}) {
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const existingIndex = cart.findIndex((item: any) => item.id === product.id);
+
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  showToast(`${product.name} added to cart!`);
   updateCartBadge();
+}
 
-  document.body.addEventListener("click", (e) => {
+export function setupGlobalAddToCart() {
+  document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
 
-    if (target && target.classList.contains("btn-add-cart")) {
-      addToCart({ id: Date.now(), name: "Suitcase" });
-      showToast("Product added to cart!");
+    if (
+      target.classList.contains("btn-add-cart") &&
+      !window.location.pathname.includes("catalog.html")
+    ) {
+      const product = {
+        id: target.dataset.id || "",
+        name: target.dataset.name || "Product",
+        price: Number(target.dataset.price) || 0,
+        imageUrl: target.dataset.image || "",
+      };
+
+      if (product.id) {
+        addToCart(product);
+      }
     }
   });
 }
 
-function addToCart(product: any) {
-  cart.push(product);
-  localStorage.setItem("cart", JSON.stringify(cart));
+setupGlobalAddToCart();
+document.addEventListener("DOMContentLoaded", () => {
   updateCartBadge();
-}
-
-function updateCartBadge() {
-  const badge = document.querySelector(".cart-count");
-  if (badge) {
-    badge.textContent = cart.length.toString();
-    badge.classList.toggle("d-none", cart.length === 0);
-  }
-}
-
-function showToast(message: string) {
-  const toast = document.createElement("div");
-  toast.className = "cart-toast";
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  setTimeout(() => toast.classList.add("show"), 100);
-  setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
-}
-
-let cartItems: any[] = JSON.parse(localStorage.getItem("cart") || "[]");
-
-function updateCartUI() {
-  const countElement = document.getElementById("cart-count");
-  if (countElement) {
-    const totalItems = cartItems.length;
-    countElement.textContent = totalItems.toString();
-
-    countElement.style.display = totalItems > 0 ? "flex" : "none";
-  }
-}
-
-document.addEventListener("click", (e) => {
-  const target = e.target as HTMLElement;
-
-  if (target.classList.contains("btn-add-cart")) {
-    cartItems.push({ id: Date.now() });
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-
-    updateCartUI();
-
-    const originalText = target.innerText;
-    target.innerText = "ADDED!";
-    target.style.backgroundColor = "#28a745";
-
-    setTimeout(() => {
-      target.innerText = originalText;
-      target.style.backgroundColor = "";
-    }, 1000);
-  }
+  initMainPage();
+  checkLoginStatus();
 });
 
-document.addEventListener("DOMContentLoaded", initMainPage);
-document.addEventListener("DOMContentLoaded", checkLoginStatus);
-document.addEventListener("DOMContentLoaded", initCartLogic);
-document.addEventListener("DOMContentLoaded", updateCartUI);
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartBadge();
+});
