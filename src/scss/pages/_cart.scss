@@ -2,7 +2,7 @@
   background: #333;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/src/assets/images/cart-banner.jpg");
+    url("/src/assets/cartImages/cartHeroImage.jpg");
   background-size: cover;
   background-position: center;
   height: 250px;
@@ -24,6 +24,7 @@
 
     td {
       padding: 25px 10px;
+      text-align: center;
       font-family: "Montserrat", sans-serif;
       color: #333;
     }
@@ -45,5 +46,125 @@
     margin-top: 20px;
     border-top: 1px solid #666;
     padding-top: 20px;
+  }
+}
+
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+    thead {
+      background-color: #55524e;
+      color: white;
+
+      th {
+        padding: 20px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    .cart-row {
+      border-bottom: 2px solid #b92770;
+
+      td {
+        padding: 25px 15px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+
+    .prod-img {
+      width: 120px;
+      height: auto;
+    }
+  }
+
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: bold;
+
+    button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      &:hover {
+        color: #b92770;
+      }
+    }
+  }
+
+  .cart-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 50px;
+    padding: 0;
+    .footer-buttons {
+      display: flex;
+      gap: 20px;
+
+      .btn-continue,
+      .btn-clear {
+        background-color: #b92770;
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        transition: opacity 0.3s;
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  .cart-totals-card {
+    background-color: #55524e;
+    color: white;
+    padding: 30px;
+    width: 400px;
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #777;
+
+      &.grand-total {
+        border-bottom: none;
+        font-size: 24px;
+        font-weight: 800;
+        margin-top: 20px;
+      }
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background-color: #b92770;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
   }
 }
