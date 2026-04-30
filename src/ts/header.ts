@@ -1,23 +1,26 @@
-export function initActiveLink() {
+export function setActiveNavLink() {
   const navLinks = document.querySelectorAll(".nav-link a");
 
-  // Csak a puszta fájlnevet kérjük le (pl. "catalog.html")
-  // A split('/') szétvágja az utat, a pop() pedig kiveszi az utolsó részt.
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
-
-  console.log("Tisztított URL fájlnév:", currentFile);
-
   navLinks.forEach((link) => {
-    const href = link.getAttribute("href"); // Ez pl. "catalog.html"
+    const anchor = link as HTMLAnchorElement;
+    const href = anchor.getAttribute("href");
 
-    if (href === currentFile) {
+    if (!href) return;
+    const isHome =
+      (window.location.pathname === "/" ||
+        window.location.pathname === "/index.html") &&
+      href === "index.html";
+    const isCurrentPage = window.location.pathname.includes(href);
+
+    if (isHome || isCurrentPage) {
       link.classList.add("active");
-      console.log("Találat! Aktív lett:", href);
+      console.log("Aktívvá téve:", href);
     } else {
       link.classList.remove("active");
     }
   });
 }
 
-// Futtassuk akkor, amikor minden betöltődött
-window.addEventListener("load", initActiveLink);
+window.addEventListener("load", () => {
+  setActiveNavLink();
+});
