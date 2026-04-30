@@ -4,67 +4,66 @@
   font-family: "Montserrat", sans-serif;
   width: 100%;
 
+  // --- BENEFITS BAR (Változatlan) ---
   .benefits-bar {
     background-color: #333230;
     padding: 60px 0;
     color: #fff;
-
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    .benefits-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 40px;
-      text-transform: none;
-    }
-
     .benefits-grid {
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
-      width: 100%;
       gap: 20px;
     }
-
     .benefit-item {
       display: flex;
       align-items: center;
       gap: 15px;
       flex: 1;
-
       img {
         width: 50px;
         height: auto;
         flex-shrink: 0;
       }
-
       p {
         font-size: 13px;
         line-height: 1.4;
         margin: 0;
-        max-width: 180px;
       }
     }
   }
 
+  // --- FOOTER CONTENT ---
   .footer-content {
-    padding: 60px 0 20px;
+    padding: 80px 0 40px;
     background-color: #ffffff;
+
+    .container {
+      max-width: 1240px; // Kicsit szélesebb konténer, hogy több legyen a hely
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr) 2fr;
-      gap: 40px;
-      margin-bottom: 40px;
+      // MÓDOSÍTÁS: Az első 3 oszlop keskenyebb (0.8fr), a Contact Us pedig szélesebb (1.6fr)
+      grid-template-columns: 0.8fr 0.8fr 0.8fr 1.6fr;
+      column-gap: 40px;
+      row-gap: 60px;
+
+      grid-template-areas:
+        "about links achieve contact"
+        "shipping shipping shipping contact";
+
+      align-items: stretch;
     }
 
     h3 {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 25px;
       color: #000;
     }
@@ -73,15 +72,12 @@
       list-style: none;
       padding: 0;
       margin: 0;
-
       li {
         margin-bottom: 12px;
-        font-size: 14px;
-
         a {
           text-decoration: none;
           color: #504e4a;
-          transition: color 0.3s;
+          font-size: 14px;
           &:hover {
             color: #d12053;
           }
@@ -89,47 +85,80 @@
       }
     }
 
+    .about-col {
+      grid-area: about;
+    }
+    .links-col {
+      grid-area: links;
+    }
+    .achieve-col {
+      grid-area: achieve;
+    }
+
+    // --- SHIPPING INFO ---
+    .shipping-info {
+      grid-area: shipping;
+      align-self: end;
+      p {
+        font-size: 13px;
+        color: #504e4a;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 85%; // Megtartjuk a távolságot a Contact-tól
+      }
+    }
+
+    // --- CONTACT COL (SZÉLESEBB ÉS SZELLŐSEBB) ---
     .contact-col {
+      grid-area: contact;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
       p {
         font-size: 14px;
         color: #504e4a;
         line-height: 1.6;
-        margin-bottom: 20px;
+        margin-bottom: auto;
+        padding-bottom: 40px;
       }
 
-      .contact-info li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        img {
-          width: 16px;
+      .contact-info {
+        display: grid;
+        // Két oszlop, ahol a tartalom határozza meg a szélességet
+        grid-template-columns: auto auto;
+        column-gap: 30px; // Nagyobb rés az ikonok/szövegek között vízszintesen
+        row-gap: 20px;
+
+        li {
+          display: flex;
+          align-items: flex-start; // Ha több soros a szöveg, felülről induljon az ikon mellé
+          gap: 12px;
+          font-size: 13px;
+          color: #000;
+          font-weight: 500;
+          line-height: 1.4;
+          white-space: nowrap; // Megakadályozza a csúnya töréseket, amíg van hely
+
+          img {
+            width: 20px; // Kicsit nagyobb ikonok
+            height: auto;
+            margin-top: 2px; // Finomhangolás a szöveghez
+          }
         }
       }
     }
 
-    .shipping-info {
-      margin-top: 40px;
-      padding: 30px;
-      background-color: #f9f9f9;
-      border-radius: 4px;
-
-      h3 {
-        margin-bottom: 15px;
-      }
-      p {
-        font-size: 13px;
-        color: #777;
-        line-height: 1.6;
-      }
-    }
-
     .footer-bottom {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid #ececec;
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid #eeeeee;
       text-align: center;
-      font-size: 13px;
-      color: #999;
+      p {
+        color: #999999;
+        font-size: 14px;
+        margin: 0;
+      }
     }
   }
 }
