@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+  </head>
+  <body>
+    <load src="./header.html" />
+    <main class="product-details">
+      <div class="container">
+        <section class="product-main">
+          <div class="product-gallery">
+            <div class="main-image">
+              <img id="current-image" src="" alt="Main product image" />
+            </div>
+            <div class="thumbnail-list" id="thumbnail-container"></div>
+          </div>
+
+          <div class="product-info-aside">
+            <h1 id="product-title"></h1>
+            <div class="rating">⭐⭐⭐⭐☆ (12 Reviews)</div>
+            <p class="price" id="product-price"></p>
+
+            <p>
+              The new Global Explorer Max Comfort Suitcase Pro is a bold
+              reimagining of travel essentials, designed to elevate every
+              journey. Made with at least 30% recycled materials, its
+              lightweight yet impact-resistant shell combines eco-conscious
+              innovation with rugged durability.
+              <br /><br />
+              The ergonomic handle and GlideMotion spinner wheels ensure
+              effortless mobility while making a statement in sleek design.
+              Inside, the modular compartments and adjustable straps keep your
+              belongings secure and neatly organized, no matter the destination.
+            </p>
+
+            <div class="selectors">
+              <div class="select-group">
+                <label>Size</label>
+                <select id="size-select">
+                  <option>Choose option</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="purchase-actions">
+              <div class="quantity-control">
+                <button id="minus">-</button>
+                <input type="number" id="quantity" value="1" min="1" />
+                <button id="plus">+</button>
+              </div>
+              <button class="btn-primary" id="add-to-cart">Add To Cart</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="product-tabs">
+          <div class="tab-headers">
+            <button class="tab-btn active" data-tab="details">Details</button>
+            <button class="tab-btn" data-tab="reviews">Reviews</button>
+            <button class="tab-btn" data-tab="shipping">Shipping Policy</button>
+          </div>
+          <div class="tab-content" id="tab-content"></div>
+        </section>
+
+        <section class="related-products">
+          <h2 class="section-title">You May Also Like</h2>
+          <div class="product-grid" id="related-grid"></div>
+        </section>
+        <section class="related-products"></section>
+  </div>
+      </div>
+    </main>
+    <load src="./footer.html" />
+    <script type="module" src="/src/ts/product-details.ts"></script>
+    <script type="module" src="/src/ts/main.ts"></script>
+  </body>
+</html>

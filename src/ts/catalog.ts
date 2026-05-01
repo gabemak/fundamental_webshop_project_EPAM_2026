@@ -95,18 +95,20 @@ function renderProducts(
       }
 
       return `
-        <div class="product-card">
-          <span class="sale-badge">SALE</span>
-          <div class="image-container">
-            <img src="${p.imageUrl}" alt="${p.name}">
-          </div>
-          <div class="card-content">
-            <h4>${displayName}</h4>
-            <p class="price">$${p.price}</p>
-            <button class="btn-add-cart" data-id="${p.id}">ADD TO CART</button>
-          </div>
-        </div>
-      `;
+  <div class="product-card">
+    <span class="sale-badge">SALE</span>
+    <a href="productDetails.html?id=${p.id}" class="product-details-link">
+      <div class="image-container">
+        <img src="${p.imageUrl}" alt="${p.name}">
+      </div>
+      <div class="card-content">
+        <h4>${displayName}</h4>
+        <p class="price">$${p.price}</p>
+      </div>
+    </a>
+    <button class="btn-add-cart" data-id="${p.id}">ADD TO CART</button>
+  </div>
+`;
     })
     .join("");
 
@@ -211,5 +213,19 @@ function showSearchError(term: string) {
   searchInput.value = "";
   searchInput.focus();
 }
+
+document.addEventListener("click", (e) => {
+  const target = e.target as HTMLElement;
+  // Megkeressük a legközelebbi kártyát
+  const card = target.closest(".product-card");
+
+  // Ha kártyára kattintottunk, de NEM a kosár gombra
+  if (card && !target.closest(".add-to-cart-btn")) {
+    const id = card.querySelector(".add-to-cart-btn")?.getAttribute("data-id");
+    if (id) {
+      window.location.href = `productDetails.html?id=${id}`;
+    }
+  }
+});
 
 loadProducts();

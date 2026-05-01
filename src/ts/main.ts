@@ -78,6 +78,19 @@ export function updateCartBadge() {
   }
 }
 
+export function updateCartCounter(): void {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const totalItems = cart.reduce(
+    (sum: number, item: any) => sum + item.quantity,
+    0,
+  );
+
+  const counterElement = document.querySelector(".cart-count");
+  if (counterElement) {
+    counterElement.textContent = totalItems.toString();
+  }
+}
+
 export function addToCart(product: {
   id: string;
   name: string;
