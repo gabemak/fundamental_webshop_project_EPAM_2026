@@ -90,7 +90,6 @@
 .product-card {
   position: relative;
   background: white;
-  // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -120,7 +119,6 @@
   }
 
   h4 {
-    /*  font-size: 15px; */
     font-weight: 600;
     color: #333;
     min-height: 42px;

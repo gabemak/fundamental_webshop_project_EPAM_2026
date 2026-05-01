@@ -68,7 +68,7 @@ function showToast(message: string) {
 }
 
 export function updateCartBadge() {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
   const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
   const badge = document.getElementById("cart-count");
 
@@ -79,7 +79,7 @@ export function updateCartBadge() {
 }
 
 export function updateCartCounter(): void {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
   const totalItems = cart.reduce(
     (sum: number, item: any) => sum + item.quantity,
     0,
@@ -97,7 +97,7 @@ export function addToCart(product: {
   price: number;
   imageUrl: string;
 }) {
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  let cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
   const existingIndex = cart.findIndex((item: any) => item.id === product.id);
 
   if (existingIndex > -1) {
@@ -121,10 +121,10 @@ export function setupGlobalAddToCart() {
       !window.location.pathname.includes("catalog.html")
     ) {
       const product = {
-        id: target.dataset.id || "",
-        name: target.dataset.name || "Product",
-        price: Number(target.dataset.price) || 0,
-        imageUrl: target.dataset.image || "",
+        id: target.dataset.id ?? "",
+        name: target.dataset.name ?? "Product",
+        price: Number(target.dataset.price) ?? 0,
+        imageUrl: target.dataset.image ?? "",
       };
 
       if (product.id) {
