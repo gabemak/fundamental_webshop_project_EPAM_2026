@@ -31,6 +31,7 @@ async function loadProducts() {
       renderPage(1);
       renderRandomTopSets();
       setupEventListeners();
+      setupSort();
     }
   } catch (error) {
     console.error("Hiba az adatok betöltésekor:", error);
@@ -52,9 +53,9 @@ function handleSearch() {
   );
 
   if (foundProduct) {
-    window.location.href = `product-details.html?id=${foundProduct.id}`;
+    window.location.href = `productDetails.html?id=${foundProduct.id}`;
   } else {
-    alert(`No products found matching "${term}".`);
+    alert("Product not found");
     searchInput.value = "";
   }
 }
@@ -202,24 +203,10 @@ function setupEventListeners() {
   }
 }
 
-function showSearchError(term: string) {
-  alert(
-    `Sorry, we couldn't find any suitcase matching "${term}". Please try another model!`,
-  );
-
-  const searchInput = document.getElementById(
-    "catalog-search",
-  ) as HTMLInputElement;
-  searchInput.value = "";
-  searchInput.focus();
-}
-
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
-  // Megkeressük a legközelebbi kártyát
   const card = target.closest(".product-card");
 
-  // Ha kártyára kattintottunk, de NEM a kosár gombra
   if (card && !target.closest(".add-to-cart-btn")) {
     const id = card.querySelector(".add-to-cart-btn")?.getAttribute("data-id");
     if (id) {
@@ -227,5 +214,43 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+function setupSort() {
+  const sortSelect = document.getElementById(
+    "sort-select",
+  ) as HTMLSelectElement;
+
+  if (!sortSelect) return;
+
+  sortSelect.addEventListener("change", () => {
+    const sortValue = sortSelect.value;
+    let sortedProducts = [...allProducts];
+
+    switch (sortValue) {
+      case "price-low":
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "popularity":
+        sortedProducts.sort(
+          (a, b) => (b.popularity || 0) - (a.popularity || 0),
+        );
+        break;
+      case "rating":
+        sortedProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        break;
+      case "default":
+      default:
+        sortedProducts = [...allProducts];
+        break;
+    }
+
+    const productsLength = sortedProducts.length;
+
+    renderProducts(sortedProducts, productsLength, 1, productsLength);
+  });
+}
 
 loadProducts();

@@ -6,7 +6,7 @@ interface CartItem {
   id: string;
   name: string;
   price: number;
-  imageUrl: string; // ELLENŐRIZD: a localStorage-ban is ez a kulcs?
+  imageUrl: string;
   quantity: number;
 }
 
@@ -43,7 +43,7 @@ function renderCart() {
     )
     .join("");
 
-  attachEventListeners(); // Eseménykezelők hozzáadása
+  attachEventListeners();
   updateTotals();
 }
 
@@ -52,13 +52,30 @@ function updateTotals() {
     (acc, item) => acc + (item.price || 0) * (item.quantity || 0),
     0,
   );
+
+  const discountRow = document.getElementById("discount-row");
+  const discountElement = document.getElementById("discount-amount");
+
+  let discount = 0;
+  if (subtotal > 3000) {
+    discount = subtotal * 0.1;
+  }
+
+  if (discountRow) {
+    discountRow.style.display = discount > 0 ? "flex" : "none";
+  }
+  if (discountElement) {
+    discountElement.innerText = `-$${discount.toFixed(2)}`;
+  }
+
   const shipping = cart.length > 0 ? 30 : 0;
 
   const subTotalEl = document.getElementById("sub-total");
   const grandTotalEl = document.getElementById("grand-total");
 
   if (subTotalEl) subTotalEl.textContent = `$${subtotal}`;
-  if (grandTotalEl) grandTotalEl.textContent = `$${subtotal + shipping}`;
+  if (grandTotalEl)
+    grandTotalEl.textContent = `$${subtotal - discount + shipping}`;
 }
 
 function attachEventListeners() {

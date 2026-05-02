@@ -14,7 +14,6 @@ export function setActiveNavLink() {
 
     if (isHome || isCurrentPage) {
       link.classList.add("active");
-      console.log("Aktívvá téve:", href);
     } else {
       link.classList.remove("active");
     }

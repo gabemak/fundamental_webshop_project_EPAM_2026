@@ -123,7 +123,7 @@ export function setupGlobalAddToCart() {
       const product = {
         id: target.dataset.id ?? "",
         name: target.dataset.name ?? "Product",
-        price: Number(target.dataset.price) ?? 0,
+        price: Number(target.dataset.price),
         imageUrl: target.dataset.image ?? "",
       };
 

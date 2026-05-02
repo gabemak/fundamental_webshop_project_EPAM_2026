@@ -4,7 +4,6 @@
   font-family: "Montserrat", sans-serif;
   width: 100%;
 
-  // --- BENEFITS BAR (Változatlan) ---
   .benefits-bar {
     background-color: #333230;
     padding: 60px 0;
@@ -36,20 +35,18 @@
     }
   }
 
-  // --- FOOTER CONTENT ---
   .footer-content {
     padding: 80px 0 40px;
     background-color: #ffffff;
 
     .container {
-      max-width: 1240px; // Kicsit szélesebb konténer, hogy több legyen a hely
+      max-width: 1240px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
     .footer-grid {
       display: grid;
-      // MÓDOSÍTÁS: Az első 3 oszlop keskenyebb (0.8fr), a Contact Us pedig szélesebb (1.6fr)
       grid-template-columns: 0.8fr 0.8fr 0.8fr 1.6fr;
       column-gap: 40px;
       row-gap: 60px;
@@ -95,7 +92,6 @@
       grid-area: achieve;
     }
 
-    // --- SHIPPING INFO ---
     .shipping-info {
       grid-area: shipping;
       align-self: end;
@@ -104,11 +100,10 @@
         color: #504e4a;
         line-height: 1.6;
         margin: 0;
-        max-width: 85%; // Megtartjuk a távolságot a Contact-tól
+        max-width: 85%;
       }
     }
 
-    // --- CONTACT COL (SZÉLESEBB ÉS SZELLŐSEBB) ---
     .contact-col {
       grid-area: contact;
       display: flex;
@@ -125,25 +120,24 @@
 
       .contact-info {
         display: grid;
-        // Két oszlop, ahol a tartalom határozza meg a szélességet
         grid-template-columns: auto auto;
-        column-gap: 30px; // Nagyobb rés az ikonok/szövegek között vízszintesen
+        column-gap: 30px;
         row-gap: 20px;
 
         li {
           display: flex;
-          align-items: flex-start; // Ha több soros a szöveg, felülről induljon az ikon mellé
+          align-items: flex-start;
           gap: 12px;
           font-size: 13px;
           color: #000;
           font-weight: 500;
           line-height: 1.4;
-          white-space: nowrap; // Megakadályozza a csúnya töréseket, amíg van hely
+          white-space: nowrap;
 
           img {
-            width: 20px; // Kicsit nagyobb ikonok
+            width: 20px;
             height: auto;
-            margin-top: 2px; // Finomhangolás a szöveghez
+            margin-top: 2px;
           }
         }
       }

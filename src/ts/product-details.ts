@@ -52,13 +52,19 @@ function renderRelatedProducts(currentId: string) {
     .map(
       (product) => `
     <div class="product-card">
-      <div class="product-image">
-        <img src="${product.imageUrl}" alt="${product.name}">
-        <button class="add-to-cart-quick" data-id="${product.id}">Add To Cart</button>
+      <div class="product-image-container">
+        <img src="${product.imageUrl}" alt="${product.name}" class="clickable-img" data-id="${product.id}">
+        ${product.price > 240 ? '<span class="sale-badge">SALE</span>' : ""}
       </div>
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <p class="price">$${product.price}</p>
+      <div class="product-content">
+        <h3 class="product-name">${product.name}</h3>
+        <p class="product-price">$${product.price}</p>
+        <button class="btn-add-to-cart" 
+                data-id="${product.id}" 
+                data-name="${product.name}" 
+                data-price="${product.price}">
+          Add To Cart
+        </button>
       </div>
     </div>
   `,
