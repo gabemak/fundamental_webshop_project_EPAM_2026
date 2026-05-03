@@ -1,3 +1,10 @@
+## Prerequisites
+
+Before running the project, ensure you have the following installed:
+
+- **Node.js** (LTS version recommended)
+- **npm** (Node Package Manager)
+
 # Technologies Used:
 
 The project is built with a modern web stack to ensure a modular architecture and a fast development experience:
