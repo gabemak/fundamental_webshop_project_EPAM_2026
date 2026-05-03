@@ -8,6 +8,7 @@
   </head>
   <body>
     <load src="./header.html" />
+
     <main class="product-details">
       <div class="container">
         <section class="product-main">
@@ -20,38 +21,88 @@
 
           <div class="product-info-aside">
             <h1 id="product-title"></h1>
-            <div class="rating">⭐⭐⭐⭐☆ (12 Reviews)</div>
+
+            <div class="rating-row">
+              <div class="stars">
+                <span class="star">★</span><span class="star">★</span
+                ><span class="star">★</span><span class="star">★</span
+                ><span class="star-empty">☆</span>
+              </div>
+              <span class="review-count">(1 Clients Review)</span>
+            </div>
+
             <p class="price" id="product-price"></p>
 
-            <p>
-              The new Global Explorer Max Comfort Suitcase Pro is a bold
-              reimagining of travel essentials, designed to elevate every
-              journey. Made with at least 30% recycled materials, its
-              lightweight yet impact-resistant shell combines eco-conscious
-              innovation with rugged durability.
-              <br /><br />
-              The ergonomic handle and GlideMotion spinner wheels ensure
-              effortless mobility while making a statement in sleek design.
-              Inside, the modular compartments and adjustable straps keep your
-              belongings secure and neatly organized, no matter the destination.
-            </p>
+            <div class="description-text">
+              <p>
+                The new Global Explorer Max Comfort Suitcase Pro is a bold
+                reimagining of travel essentials, designed to elevate every
+                journey. Made with at least 30% recycled materials, its
+                lightweight yet impact-resistant shell combines eco-conscious
+                innovation with rugged durability.
+              </p>
+              <p>
+                The ergonomic handle and GlideMotion spinner wheels ensure
+                effortless mobility while making a statement in sleek design.
+                Inside, the modular compartments and adjustable straps keep your
+                belongings secure and neatly organized, no matter the
+                destination.
+              </p>
+            </div>
 
             <div class="selectors">
               <div class="select-group">
-                <label>Size</label>
-                <select id="size-select">
-                  <option>Choose option</option>
-                </select>
+                <label for="size-select">Size</label>
+                <div class="custom-select-wrapper">
+                  <select id="size-select">
+                    <option value="">Choose option</option>
+                  </select>
+                </div>
+              </div>
+              <div class="select-group">
+                <label for="color-select">Color</label>
+                <div class="custom-select-wrapper">
+                  <select id="color-select">
+                    <option value="">Choose option</option>
+                  </select>
+                </div>
+              </div>
+              <div class="select-group">
+                <label for="category-select">Category</label>
+                <div class="custom-select-wrapper">
+                  <select id="category-select">
+                    <option value="">Choose option</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             <div class="purchase-actions">
               <div class="quantity-control">
-                <button id="minus">-</button>
-                <input type="number" id="quantity" value="1" min="1" />
-                <button id="plus">+</button>
+                <button type="button" id="minus">-</button>
+                <input type="number" id="quantity" value="1" min="1" readonly />
+                <button type="button" id="plus">+</button>
               </div>
               <button class="btn-primary" id="add-to-cart">Add To Cart</button>
+            </div>
+
+            <div class="payment-info">
+              <span class="payment-label">Payment:</span>
+              <div class="payment-icons">
+                <img src="src/assets/productDetailsIcons/visa.png" alt="Visa" />
+                <img
+                  src="src/assets/productDetailsIcons/americanExpress.png"
+                  alt="Amex"
+                />
+                <img
+                  src="src/assets/productDetailsIcons/masterCard.png"
+                  alt="Mastercard"
+                />
+                <img
+                  src="src/assets/productDetailsIcons/paypal.png"
+                  alt="Paypal"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -69,11 +120,11 @@
           <h2 class="section-title">You May Also Like</h2>
           <div class="product-grid" id="related-grid"></div>
         </section>
-        <section class="related-products"></section>
-  </div>
       </div>
     </main>
+
     <load src="./footer.html" />
+
     <script type="module" src="/src/ts/product-details.ts"></script>
     <script type="module" src="/src/ts/main.ts"></script>
   </body>

@@ -1,4 +1,4 @@
-import { updateCartCounter } from "./main";
+import { updateCartBadge } from "./main";
 
 interface Product {
   id: string;
@@ -9,6 +9,7 @@ interface Product {
   category: string;
   color: string;
   size?: string;
+  rating?: number;
 }
 
 let allProducts: Product[] = [];
@@ -34,73 +35,65 @@ async function initProductPage() {
       renderDetails(currentProduct);
       renderRelatedProducts(id);
       setupEventListeners();
+      setupTabs();
     }
-
-    updateCartCounter();
   } catch (error) {
-    console.error("Hiba az oldal inicializálásakor:", error);
+    console.error("Initialization error:", error);
   }
-}
-
-function renderRelatedProducts(currentId: string) {
-  const container = document.getElementById("related-grid");
-  if (!container) return;
-
-  const related = allProducts.filter((p) => p.id !== currentId).slice(0, 4);
-
-  container.innerHTML = related
-    .map(
-      (product) => `
-    <div class="product-card">
-      <div class="product-image-container">
-        <img src="${product.imageUrl}" alt="${product.name}" class="clickable-img" data-id="${product.id}">
-        ${product.price > 240 ? '<span class="sale-badge">SALE</span>' : ""}
-      </div>
-      <div class="product-content">
-        <h3 class="product-name">${product.name}</h3>
-        <p class="product-price">$${product.price}</p>
-        <button class="btn-add-to-cart" 
-                data-id="${product.id}" 
-                data-name="${product.name}" 
-                data-price="${product.price}">
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  `,
-    )
-    .join("");
-
-  container.querySelectorAll(".clickable-img").forEach((img) => {
-    img.addEventListener("click", (e) => {
-      const id = (e.target as HTMLElement).dataset.id;
-      window.location.href = `productDetails.html?id=${id}`;
-    });
-  });
 }
 
 function renderDetails(product: Product) {
   const title = document.getElementById("product-title");
   const price = document.getElementById("product-price");
-  const img = document.getElementById("current-image") as HTMLImageElement;
-  const shortDesc = document.getElementById("product-short-desc");
-  const tabContent = document.getElementById("tab-content");
+  const mainImg = document.getElementById("current-image") as HTMLImageElement;
 
   if (title) title.innerText = product.name;
   if (price) price.innerText = `$${product.price}`;
-  if (img) img.src = product.imageUrl;
+  if (mainImg) mainImg.src = product.imageUrl;
 
-  if (shortDesc) {
-    shortDesc.innerHTML = `
-      <p style="margin-bottom: 20px;">
-        Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor, in efficitur justo imperdiet. Etiam a ex at ante tincidunt.
-      </p>
-    `;
+  const thumbContainer = document.getElementById("thumbnail-container");
+  if (thumbContainer) {
+    const images = [
+      product.imageUrl,
+      product.imageUrl,
+      product.imageUrl,
+      product.imageUrl,
+    ];
+    thumbContainer.innerHTML = images
+      .map(
+        (src, i) => `
+      <img src="${src}" class="thumb ${i === 0 ? "active" : ""}" alt="Thumb ${i}">
+    `,
+      )
+      .join("");
+
+    thumbContainer.querySelectorAll(".thumb").forEach((thumb) => {
+      thumb.addEventListener("click", (e) => {
+        const target = e.target as HTMLImageElement;
+        mainImg.src = target.src;
+        thumbContainer
+          .querySelectorAll(".thumb")
+          .forEach((t) => t.classList.remove("active"));
+        target.classList.add("active");
+      });
+    });
   }
 
-  if (tabContent) {
-    tabContent.innerHTML = `<p>Detailed description for ${product.name} goes here.</p>`;
-  }
+  populateSelect("size-select", product.size || "S, M, L, XL");
+  populateSelect("color-select", "Red, Blue, Green, Black, Grey");
+  populateSelect("category-select", "Carry-ons, Suitcases, Luggage sets");
+}
+
+function populateSelect(id: string, optionsStr: string) {
+  const select = document.getElementById(id) as HTMLSelectElement;
+  if (!select) return;
+  const options = optionsStr.split(", ");
+  options.forEach((opt) => {
+    const el = document.createElement("option");
+    el.value = opt.toLowerCase();
+    el.textContent = opt;
+    select.appendChild(el);
+  });
 }
 
 function setupEventListeners() {
@@ -120,22 +113,84 @@ function setupEventListeners() {
   const addBtn = document.getElementById("add-to-cart");
   addBtn?.addEventListener("click", () => {
     if (!currentProduct) return;
+
+    const size = (document.getElementById("size-select") as HTMLSelectElement)
+      .value;
+    if (!size) {
+      alert("Please select a size!");
+      return;
+    }
+
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const quantity = parseInt(qtyInput.value);
+
     const existingItem = cart.find(
-      (item: any) => item.id === currentProduct?.id,
+      (item: any) =>
+        item.id === currentProduct?.id && item.selectedSize === size,
     );
 
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.push({ ...currentProduct, quantity });
+      cart.push({
+        ...currentProduct,
+        quantity,
+        selectedSize: size,
+      });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCounter();
-    alert("Product added to cart!");
+    updateCartBadge();
+    alert("Added to cart!");
   });
+}
+
+function setupTabs() {
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const content = document.getElementById("tab-content");
+
+  if (content)
+    content.innerHTML =
+      "<p>Standard high-quality polycarbonate material with 360-degree wheels.</p>";
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const tab = (btn as HTMLElement).dataset.tab;
+      if (content) {
+        content.innerHTML = `<p>${tab?.charAt(0).toUpperCase()}${tab?.slice(1)} information for ${currentProduct?.name}.</p>`;
+      }
+    });
+  });
+}
+
+function renderRelatedProducts(currentId: string) {
+  const container = document.getElementById("related-grid");
+  if (!container) return;
+
+  const related = allProducts
+    .filter((p) => p.id !== currentId)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 4);
+
+  container.innerHTML = related
+    .map(
+      (p) => `
+    <div class="product-card">
+        <div class="product-image-container">
+            <img src="${p.imageUrl}" alt="${p.name}" onclick="window.location.href='productDetails.html?id=${p.id}'">
+            ${p.price > 300 ? '<span class="sale-badge">SALE</span>' : ""}
+        </div>
+        <div class="product-content">
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-price">$${p.price}</p>
+            <button class="btn-add-to-cart" onclick="window.location.href='productDetails.html?id=${p.id}'">View Details</button>
+        </div>
+    </div>
+  `,
+    )
+    .join("");
 }
 
 initProductPage();

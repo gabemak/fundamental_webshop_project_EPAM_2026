@@ -4,54 +4,195 @@
   .product-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 60px;
     margin-bottom: 80px;
 
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
+      gap: 30px;
     }
   }
 
   .product-gallery {
     .main-image {
       background: #f5f5f5;
+      border-radius: 4px;
       margin-bottom: 20px;
+      overflow: hidden;
       img {
         width: 100%;
-        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
     .thumbnail-list {
       display: flex;
       gap: 15px;
       img {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
         cursor: pointer;
         border: 2px solid transparent;
+        border-radius: 4px;
         &.active {
-          border-color: #000;
+          border-color: #b92770;
+        }
+      }
+    }
+  }
+
+  .product-info-aside {
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      .stars {
+        color: #f1c40f;
+        letter-spacing: 2px;
+      }
+      .review-count {
+        color: #888;
+        font-size: 14px;
+      }
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 25px;
+    }
+
+    .description-text {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      p {
+        margin-bottom: 15px;
+      }
+    }
+
+    .selectors {
+      margin-bottom: 35px;
+      .select-group {
+        margin-bottom: 20px;
+        label {
+          display: block;
+          font-weight: 700;
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+        select {
+          width: 100%;
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          background-color: white;
+          font-size: 14px;
+          color: #666;
+          cursor: pointer;
+          &:focus {
+            border-color: #b92770;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .purchase-actions {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+
+      .quantity-control {
+        display: flex;
+        border: 2px solid #b92770;
+        border-radius: 4px;
+        button {
+          background: white;
+          border: none;
+          padding: 10px 20px;
+          font-size: 20px;
+          font-weight: bold;
+          color: #b92770;
+          cursor: pointer;
+        }
+        input {
+          width: 50px;
+          border: none;
+          text-align: center;
+          font-weight: 700;
+          font-size: 16px;
+        }
+      }
+
+      .btn-primary {
+        flex: 1;
+        background: #b92770;
+        color: white;
+        border: none;
+        padding: 0 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        &:hover {
+          background: #8e1d56;
+        }
+      }
+    }
+
+    .payment-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-top: 25px;
+      border-top: 1px solid #eee;
+      .payment-label {
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .payment-icons {
+        display: flex;
+        gap: 40px;
+        img {
+          height: 22px;
+          filter: grayscale(100%);
+          opacity: 0.7;
         }
       }
     }
   }
 
   .product-tabs {
+    margin-top: 60px;
     .tab-headers {
-      border-bottom: 1px solid #eee;
-      margin-bottom: 30px;
       display: flex;
       justify-content: center;
-      gap: 40px;
-
+      gap: 50px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 30px;
       .tab-btn {
         background: none;
         border: none;
         padding: 15px 0;
         font-weight: 700;
+        font-size: 16px;
         cursor: pointer;
         position: relative;
-
         &.active {
           color: #b92770;
           &::after {
