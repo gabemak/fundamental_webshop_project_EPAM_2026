@@ -2,7 +2,7 @@ import { Product, createProductCardHTML } from "./ui-utils";
 
 async function initMainPage() {
   try {
-    const response = await fetch("./src/assets/data.json");
+    const response = await fetch("/src/assets/data.json");
     const jsonResponse = await response.json();
     const allProducts: Product[] = jsonResponse.data;
 

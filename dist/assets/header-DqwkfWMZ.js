@@ -1,1 +1,0 @@
-function e(){document.querySelectorAll(`.nav-link a`).forEach(e=>{let t=e.getAttribute(`href`);if(!t)return;let n=window.location.pathname,r=t.split(`?`)[0],i=(n===`/`||n===`/index.html`)&&(r===`/index.html`||r===`/`),a=r!==`/index.html`&&r!==`/`&&n.includes(r);i||a?e.classList.add(`active`):e.classList.remove(`active`)})}window.addEventListener(`load`,()=>{e()});
