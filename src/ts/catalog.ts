@@ -53,7 +53,7 @@ function handleSearch() {
   );
 
   if (foundProduct) {
-    window.location.href = `productDetails.html?id=${foundProduct.id}`;
+    window.location.href = `/src/pages/productDetails.html?id=${foundProduct.id}`;
   } else {
     alert("Product not found");
     searchInput.value = "";
@@ -98,7 +98,7 @@ function renderProducts(
       return `
   <div class="product-card">
     <span class="sale-badge">SALE</span>
-    <a href="productDetails.html?id=${p.id}" class="product-details-link">
+    <a href="/src/pages/productDetails.html?id=${p.id}" class="product-details-link">
       <div class="image-container">
         <img src="${p.imageUrl}" alt="${p.name}">
       </div>
@@ -210,7 +210,7 @@ document.addEventListener("click", (e) => {
   if (card && !target.closest(".add-to-cart-btn")) {
     const id = card.querySelector(".add-to-cart-btn")?.getAttribute("data-id");
     if (id) {
-      window.location.href = `productDetails.html?id=${id}`;
+      window.location.href = `/src/pages/productDetails.html?id=${id}`;
     }
   }
 });

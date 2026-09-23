@@ -25,7 +25,7 @@ async function initProductPage() {
     const id = params.get("id");
 
     if (!id) {
-      window.location.href = "catalog.html";
+      window.location.href = "/src/pages/catalog.html";
       return;
     }
 
@@ -179,13 +179,13 @@ function renderRelatedProducts(currentId: string) {
       (p) => `
     <div class="product-card">
         <div class="product-image-container">
-            <img src="${p.imageUrl}" alt="${p.name}" onclick="window.location.href='productDetails.html?id=${p.id}'">
+            <img src="${p.imageUrl}" alt="${p.name}" onclick="window.location.href='/src/pages/productDetails.html?id=${p.id}'">
             ${p.price > 300 ? '<span class="sale-badge">SALE</span>' : ""}
         </div>
         <div class="product-content">
             <h3 class="product-name">${p.name}</h3>
             <p class="product-price">$${p.price}</p>
-            <button class="btn-add-to-cart" onclick="window.location.href='productDetails.html?id=${p.id}'">View Details</button>
+            <button class="btn-add-to-cart" onclick="window.location.href='/src/pages/productDetails.html?id=${p.id}'">View Details</button>
         </div>
     </div>
   `,

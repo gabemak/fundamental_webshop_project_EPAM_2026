@@ -45,7 +45,7 @@ loginForm?.addEventListener("submit", (e: Event) => {
     }
 
     setTimeout(() => {
-      window.location.href = "index.html";
+      window.location.href = "/index.html";
     }, 1000);
   }
 });
